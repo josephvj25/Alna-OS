@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">  
+<head>  
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />  
+<title>JavaScript Radio button Object's Event handler : onclick Example</title>  
+<script type="text/javascript">  
+function MyAlert()  
+    {  
+      if ( (document.forms[0].radio1[0].checked == true ) || (document.forms[0].radio1[1].checked == true ) )  
+    {  
+    alert ( "You have selected one option" );  
+    }  
+    }  
+</script>  
+</head>  
+<body>  
+<h1 style="color: red">JavaScript Radio button Object's Event handler : onclick</h1>  
+<h3>Click on the Radio button ... and see the click event ....</h3>  
+<hr />  
+<form name="Form1" style="color: green ; font-size: 150%" action="#" >  
+<input type="radio"  
+name="radio1"   
+onclick = "MyAlert()" />Apple  
+<br /></p>  
+<p> <input type="radio"  
+name="radio1"  
+onclick = "MyAlert()" />Orange  
+</form>  
+</body>  
+</html> 

@@ -1,0 +1,316 @@
+<html>
+
+<head>
+<script type="text/javascript">
+
+
+
+
+var can_play = true;
+
+var words = new Array("CAT", "DOG", "MOUSE", "RABBIT", "HOURSE", "MISSISSIPPI");
+
+
+var to_guess = "";
+
+var display_word = "";
+
+var used_letters = "";
+
+var wrong_guesses = 0;
+
+
+
+function selectLetter(l)
+
+{
+
+	if (can_play == false)
+
+	 {
+		
+return;
+	 
+}
+	if (used_letters.indexOf(l) != -1)
+	
+{
+		
+return;
+	
+}
+	
+
+used_letters += l;
+	document.game.usedLetters.value = used_letters;
+
+	
+if (to_guess.indexOf(l) != -1)
+	 
+{
+
+		
+pos = 0;
+		
+temp_mask = display_word;
+		
+
+
+while (to_guess.indexOf(l, pos) != -1)
+		 
+{
+			
+pos = to_guess.indexOf(l, pos);
+			
+end = pos + 1;
+			
+
+start_text = temp_mask.substring(0, pos);
+
+			end_text = temp_mask.substring(end, temp_mask.length);
+
+
+			temp_mask = start_text + l + end_text;
+			
+pos = end;
+
+		 }
+
+
+		display_word = temp_mask;
+		
+document.game.displayWord.value = display_word;
+		
+
+		if (display_word.indexOf("#") == -1)
+		 
+{
+document.getElementById("luck").innerHTML = "";
+document.getElementById("result").innerHTML = "Well done, you have won!";				
+
+
+			can_play = false;
+
+		 }
+	 
+}
+	
+else
+	  
+{
+
+		
+wrong_guesses += 1;
+
+				
+
+		if (wrong_guesses == 10)
+		  
+{
+document.getElementById("luck").innerHTML = "";
+document.getElementById("result").innerHTML = "Sorry, you have lost!";			
+
+			can_play = false;
+		  
+}
+	  
+}
+
+}
+
+
+function reset()
+
+{
+
+	selectWord();
+	document.game.usedLetters.value = "";
+	used_letters = "";
+	
+wrong_guesses = 0;	
+}
+
+
+function selectWord()
+
+{
+
+	can_play = true;
+
+	random_number = Math.round(Math.random() * (words.length - 1));
+	to_guess = words[random_number];
+	
+masked_word = createMask(to_guess);
+	
+document.game.displayWord.value = masked_word;
+	
+display_word = masked_word;
+
+}
+
+
+function createMask(m)
+
+{
+
+	mask = "";
+
+	word_lenght = m.length;
+
+
+	
+for (i = 0; i < word_lenght; i ++)
+
+	  {
+
+		mask += "#";
+
+	  }
+
+	return mask;
+
+}
+
+
+</script>
+<style type="text/css">
+p{
+font-family: ubuntu;
+color: #ffffff;
+font-size: 30px;
+}
+a{
+font-family: ubuntu;
+color: #ffffff;
+font-weight: bolder;
+}
+body
+{
+background-image:url("menu.jpg"); 
+}
+h2
+{
+text-align:center;
+text-decoration:underline;
+}
+.box
+{
+background-image:url("menu.jpg");  
+height: 660px;
+width:720px;
+border-radius:10px;
+top:3px;
+}
+h1
+{
+font-family:ubuntu;
+color: #ffffff;
+font-size: 75px;
+}
+h4
+{
+font-family:ubuntu;
+color: #ffffff;
+font-size: 40px;
+font-weight: bolder;
+color: red;
+}
+h5
+{
+font-family:ubuntu;
+color: #ffffff;
+font-size: 40px;
+}
+.textbox{
+width: 300px;
+height:33px;
+font-size: 29px;
+}
+</style>
+
+</head>
+
+
+<body onLoad="reset(); return true;">
+
+<center>
+<div class="box">
+<br><br><br><br>
+<h1>GUESS & WIN</h1>
+
+
+<form name="game">
+<p>
+Display Word: <input class="textbox" type="text" name="displayWord"><br>
+
+Used Letters: <input class="textbox" type="text" name="usedLetters"></p>
+</form>
+
+<p>
+<a href="javascript:selectLetter('A');">A</a>  || 
+
+<a href="javascript:selectLetter('B');">B</a>  ||
+
+<a href="javascript:selectLetter('C');">C</a>  ||
+
+<a href="javascript:selectLetter('D');">D</a>  || 
+
+<a href="javascript:selectLetter('E');">E</a>  || 
+
+<a href="javascript:selectLetter('F');">F</a>  ||
+
+<a href="javascript:selectLetter('G');">G</a>  || 
+
+<a href="javascript:selectLetter('H');">H</a>  || 
+
+<a href="javascript:selectLetter('I');">I</a>  || 
+
+<a href="javascript:selectLetter('J');">J</a>  || 
+
+<a href="javascript:selectLetter('K');">K</a>  || 
+
+<a href="javascript:selectLetter('L');">L</a>  ||
+<a href="javascript:selectLetter('M');">M</a><br>
+
+<a href="javascript:selectLetter('N');">N</a>  || 
+
+<a href="javascript:selectLetter('O');">O</a>  || 
+
+<a href="javascript:selectLetter('P');">P</a>  || 
+
+<a href="javascript:selectLetter('Q');">Q</a>  || 
+
+<a href="javascript:selectLetter('R');">R</a>  || 
+
+<a href="javascript:selectLetter('S');">S</a>  || 
+
+<a href="javascript:selectLetter('T');">T</a>  || 
+
+<a href="javascript:selectLetter('U');">U</a>  || 
+
+<a href="javascript:selectLetter('V');">V</a>  || 
+
+<a href="javascript:selectLetter('W');">W</a>  || 
+
+<a href="javascript:selectLetter('X');">X</a>  || 
+
+<a href="javascript:selectLetter('Y');">Y</a>  || 
+
+<a href="javascript:selectLetter('Z');">Z</a></p>
+
+<p>
+<a href="javascript:reset()">
+Start game</a> &nbsp&nbsp&nbsp&nbsp<a href="game.html">Reset Game</a></p>
+<div> 
+<h5 id="luck">Best Of Luck!!!</h5>
+<h4 id="result"></h4> 
+</div>
+
+</div>
+</center>
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,149 @@
+<HTML>
+<HEAD>
+<title>Square Game</title>
+<style type="text/css">
+#element1 {float:left;}
+#element2 {float:right;}
+input[type="button"] {
+    width: 190px;
+    height: 180px;
+    font-size:50px;
+    position: relative;
+}
+body
+{
+background-image:url("menu-bg.jpg"); 
+}
+.box
+{
+background-color:#64b19c;
+border-bottom:black 1px solid;
+border-top:black 1px solid;
+border-left:black 1px solid;
+border-right:black 1px solid;
+height: 675px;
+width:720px;
+border-radius:10px;
+top:3px;
+}
+</style>
+<SCRIPT LANGUAGE="JavaScript"> 
+var pos = new Array(9,9,9,9,9,9,9,9,9);
+var nummoves= 0;
+	function random() 
+		{
+		today = new Date();
+		num = today.getTime();
+		num = Math.round(Math.abs(Math.sin (num)*1000000)) % 9;
+		return num;
+		}
+	function display(pos) 
+		{
+		for (var i=0; i<9; i++)  
+			{
+			document.forms[0].elements[i].value = pos[i];
+			}
+		document.getElementById("moves").innerHTML= nummoves;
+			win();
+		}
+	function move(num) 
+		{
+		if (num < 8 && pos[num+1]==0) 
+			{
+			pos[num+1]= pos[num];
+			pos[num]= 0;
+			nummoves++;
+			}
+		else if (num > 0 && pos[num-1]==0) 
+			{
+			pos[num-1]= pos[num];
+			pos[num]= 0;
+			nummoves++;
+			} 
+		else if (num > 2 && pos[num-3]==0) 
+			{
+			pos[num-3]= pos[num];
+			pos[num]= 0;
+			nummoves++;
+			}
+		else if (num < 6 && pos[num+3]==0 ) 
+			{
+			pos[num+3]= pos[num];
+			pos[num]= 0;
+			nummoves++;
+			}
+		display(pos);
+		}
+	function win() 
+		{     
+		if (pos[0]== 1 & pos[1]== 2 & pos[2]== 3 & pos[3]== 4 & 
+		pos[4]== 5 & pos[5]== 6 & pos[6]== 7 & pos[7]== 8 & pos[8]== 0) 
+			{
+				if (confirm('Congratulations....You did it! Do you want to restart?')) newgame();
+  			 }
+		}
+	function newgame() 
+		{
+		var x=1;
+		for (var i=0; i<9; i++) 
+			{
+			pos[i]=9;
+			}
+		for (var i=0; i<9;i++) 
+			{
+			randomnum=random();
+			if (randomnum==9) randomnum=8;
+				x=1;
+			for (var j=0; j<9; j++)  //finding the position of randomnum 
+				{
+				if (j==i)
+			          continue;
+				if (randomnum==pos[j])  					
+					{x=0;      
+					break;
+  					}
+				 }
+			if (x==0) 
+			       { i--;
+				continue;
+		        	}
+			pos[i]=randomnum;
+			}
+		nummoves=0;
+		display(pos);   
+		}   
+</SCRIPT>
+</HEAD>
+<BODY onLoad="newgame()">
+<center>
+<div class="box">
+<FORM>
+<table border=0px cellpadding=4 cellspacing=4>
+<tr> <center>
+<td>
+<input type="button"onClick="move(0)">
+<input type="button"onClick="move(1)">
+<input type="button"onClick="move(2)"><br>
+<input type="button"onClick="move(3)">
+<input type="button"onClick="move(4)">
+<input type="button"onClick="move(5)"><br>
+<input type="button"onClick="move(6)">
+<input type="button"onClick="move(7)">
+<input type="button"onClick="move(8)"><br>
+</td>
+</center>
+</tr>
+<tr><td>
+<div id="element1">
+<h3> Number of moves</h3><h1 id="moves" size=5 value="0">0</h1></div>
+<div id="element2">
+<a style="color: #000000"href="index.html">EXIT GAME</a>
+</div>
+</td>
+</tr>
+</table>
+</FORM>
+</center>
+</div>
+</body>
+</html>

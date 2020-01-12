@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head></title>Simpe Text Editor</title>
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+
+<table>
+  <tr><td>Text to Save:</td></tr>
+  <tr>
+		<td colspan="3">
+		<!-- The textarea we are going to "download" -->
+			<textarea id="inputTextToSave" style="width:1096px;height:400px"></textarea>
+		</td>
+	</tr>
+	<tr>
+	
+	<!-- Optional: input allowing the user to name the downloaded file...-->
+	<!-- To use this feature un-comment line 12 and modify line 8 in the script-->
+	<!-- Then un-comment lines 21 and 22 in this file-->
+	<!-- <td>Filename to Save As:</td> -->
+	<!-- <td><input id="txtFileName"></input></td> -->
+
+	<!-- A button to call out JavaScript Function -->
+		<td><button onclick="saveTextAsFile()">Save Text to File</button></td>
+	</tr>
+
+</table>
+
+  </body>
+</html>

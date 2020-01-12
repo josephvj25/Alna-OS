@@ -1,0 +1,222 @@
+<html>
+<head><title>Alarm</title>
+
+<script type="text/javascript">
+	 var toneselected="movie3.mp3"
+	function MyAlert()  
+    {  
+      if (document.forms[1].r[0].checked == true )  
+    {  
+      toneselected="movie3.mp3"
+    }  
+    else if (document.forms[1].r[1].checked == true ) {
+    toneselected="alarm_alarm.mp3"
+    	
+    }
+    else if (document.forms[1].r[2].checked == true ) {
+    toneselected="funny_alarm.mp3"
+    	
+    }
+	else if (document.forms[1].r[3].checked == true ) {
+    toneselected="iphone_5_alarm.mp3"
+    }    
+    else if (document.forms[1].r[4].checked == true ) {
+    toneselected="xylophone_ringtone.mp3"
+    }  
+    
+    }
+    var x 
+function sound(){
+	 x = new Audio(toneselected); 
+    x.loop=true;
+    x.play();
+}
+function stop(){
+	x.pause();
+	
+}
+function reload(){
+location.reload();
+}
+
+    </script>
+<style type="text/css">
+.button
+{
+width:150px;
+height:50px;
+border:none;
+border-radius:8px;
+margin-left:10px;
+cursor:pointer;
+border-top:2px solid transparent;
+font-size:20px;
+}
+.curtime
+{
+width:150px;
+height:50px;
+border:none;
+margin-left:10px;
+border-top:2px solid transparent;
+font-size:25px;
+}
+.box
+{
+background-color:#aca845;
+border-bottom:black 1px solid;
+border-top:black 1px solid;
+border-left:black 1px solid;
+border-right:black 1px solid;
+
+border-radius:10px;
+}
+
+#jsalarmclock{
+font-family: Tahoma;
+font-weight: bold;
+font-size: 12px;
+}
+
+#jsalarmclock div{
+margin-bottom: 0.8em;
+}
+
+#jsalarmclock div.leftcolumn{
+float:left;
+border-radius:10px;
+margin-left:250px;
+width: 250px;
+font-size: 25px;
+background-color: lightyellow;
+clear: left;
+}
+
+#jsalarmclock span{
+margin-right: 5px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+/***********************************************
+
+* JavaScript Alarm Clock- by JavaScript Kit (www.javascriptkit.com)
+* This notice must stay intact for usage
+* Visit JavaScript Kit at http://www.javascriptkit.com/ for this script and 100s more
+
+***********************************************/
+
+var jsalarm={
+	padfield:function(f){
+		return (f<10)? "0"+f : f
+	},
+	showcurrenttime:function(){
+		var dateobj=new Date()
+		var ct=this.padfield(dateobj.getHours())+":"+this.padfield(dateobj.getMinutes())+":"+this.padfield(dateobj.getSeconds())
+		this.ctref.innerHTML=ct
+		this.ctref.setAttribute("title", ct)
+		if (typeof this.hourwake!="undefined"){ //if alarm is set
+			if (this.ctref.title==(this.hourwake+":"+this.minutewake+":"+this.secondwake)){
+				clearInterval(jsalarm.timer)
+				sound()
+			}
+		}
+	},
+	init:function(){
+		var dateobj=new Date()
+		this.ctref=document.getElementById("jsalarm_ct")
+		this.submitref=document.getElementById("submitbutton")
+		this.submitref.onclick=function(){
+			jsalarm.setalarm()
+			this.value="Alarm Set"
+			this.disabled=true
+			return false
+		}
+		this.resetref=document.getElementById("resetbutton")
+		this.resetref.onclick=function(){
+		jsalarm.submitref.disabled=false
+		jsalarm.hourwake=undefined
+		jsalarm.hourselect.disabled=false
+		jsalarm.minuteselect.disabled=false
+		jsalarm.secondselect.disabled=false
+		return falseRESET
+		return false
+		}
+		var selections=document.getElementsByTagName("select")
+		this.hourselect=selections[0]
+		this.minuteselect=selections[1]
+		this.secondselect=selections[2]
+		for (var i=0; i<60; i++){
+			if (i<24) //If still within range of hours field: 0-23
+			this.hourselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getHours()==i)
+			this.minuteselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getMinutes()==i)
+			this.secondselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getSeconds()==i)
+
+		}
+		jsalarm.showcurrenttime()
+		jsalarm.timer=setInterval(function(){jsalarm.showcurrenttime()}, 1000)
+	},
+	setalarm:function(){
+		this.hourwake=this.hourselect.options[this.hourselect.selectedIndex].value
+		this.minutewake=this.minuteselect.options[this.minuteselect.selectedIndex].value
+		this.secondwake=this.secondselect.options[this.secondselect.selectedIndex].value
+		this.hourselect.disabled=true
+		this.minuteselect.disabled=true
+		this.secondselect.disabled=true
+	}
+}
+
+</script>
+</head>
+<body>
+<center>
+<div class="box">
+<div align="center" font-family="ubuntu">
+        <h1 style="color:#ffffff; font-size: 50px">ALARM</h1>
+      </div>
+<form action="">
+<div id="jsalarmclock">
+<div><div class="leftcolumn">CURRENT TIME</div> <span class="curtime" id ="jsalarm_ct" style="letter-spacing:2px"></span></div>
+<br>
+<div><div class="leftcolumn">SET ALARM</div> <span class="curtime"><select></select> Hour</span> <span class="curtime"><select></select> Minutes</span> <span class="curtime"><select></select> Seconds</span></div>
+<br><br><br><br>
+<input class="button" type="submit" value="SET ALARM!" id="submitbutton" /><input class="button" type="reset" value="UNSET" id="resetbutton"/><input class="button" type="button" value="STOP ALARM" onclick = "stop()"/><input class="button" type="reset" value="RESET" id="resetbutton" onclick = "reload()"/>
+</div>
+</form>
+<script type="text/javascript">
+jsalarm.init();
+</script>
+
+<form name="Form1" action="#">
+<input type="radio" name="r" onclick = "MyAlert()"/>Nokia Tune<br> 
+<audio id="myAudio" controls>
+  <source src="movie3.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br> 
+<input type="radio" name="r" onclick = "MyAlert()"/>Alarm Tune<br>      
+<audio id="myAudio" controls>
+  <source src="alarm_alarm.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br>
+<input type="radio" name="r" onclick = "MyAlert()"/>Funny Tune<br>      
+<audio id="myAudio" controls>
+  <source src="funny_alarm.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br>
+<input type="radio" name="r" onclick = "MyAlert()"/>Phone Tune<br>      
+<audio id="myAudio" controls>
+  <source src="iphone_5_alarm.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br>
+<input type="radio" name="r" onclick = "MyAlert()"/>Xylophone !<br>      
+<audio id="myAudio" controls>
+  <source src="xylophone_ringtone.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio><br><br><br><br>
+</form>
+</div>
+<center>
+</body>
+</html>

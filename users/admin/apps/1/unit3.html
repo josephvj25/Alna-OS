@@ -1,0 +1,89 @@
+<html>
+<head>
+  <link rel="icon"
+      type="image/png"
+      href="converticon.png">
+      <style type="text/css">
+  body
+{
+background-color:#577926; 
+}
+h1
+{
+font-family:ubuntu;
+color: #ffffff;
+}
+  .box
+{
+
+background-color:#3d4543;
+border-bottom:black 1px solid;
+border-top:black 1px solid;
+border-left:black 1px solid;
+border-right:black 1px solid;
+height: 660px;
+width:720px;
+border-radius:10px;
+font-family:ubuntu;
+color: #ffffff;
+}
+.button
+{
+width:85px;
+height:35px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+border-top:2px solid transparent;
+font-size:20px;
+}
+.reset
+{
+width:85px;
+height:35px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+border-top:2px solid transparent;
+font-size:20px;
+}
+}
+.table{
+font-family: ubuntu;
+color: #ffffff;
+}
+.textbox{
+width: 150px;
+}
+</style>
+</head>
+<body>
+  <center>
+  <div class="box">
+<h1> TEMPERATURE CONVERTER </h1>
+<br><br><br>
+<FORM>
+
+Fahrenheit:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<INPUT class="textbox" TYPE="text" NAME="F" VALUE="" SIZE="6" MAXLENGTH="6" onChange="eval('C.value = ' + this.form.C_expr.value);eval('K.value = ' + this.form.K_expr.value)">
+              <INPUT TYPE="hidden" NAME="F_expr" VALUE="(Math.round(((212-32)/100 * C.value + 32)*100))/100;">
+<INPUT TYPE="hidden" NAME="F_expr2" VALUE="(Math.round(((212-32)/100 *(K.value - 273) + 32)*100))/100; "><br><br>
+Celsius:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<INPUT class="textbox" TYPE="text" NAME="C" VALUE="" SIZE="6" MAXLENGTH="6" onChange="eval('F.value = ' + this.form.F_expr.value);eval('K.value = ' + this.form.K_expr.value)">
+              <INPUT TYPE="hidden" NAME="C_expr" VALUE="(Math.round((100/(212-32) * (F.value - 32))*100))/100"> <INPUT TYPE="hidden" NAME="C_expr2" VALUE="(Math.round(K.value - 273))">&nbsp;<br><br>
+Kelvin:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<INPUT class="textbox" TYPE="text" NAME="K" VALUE="" SIZE="6" MAXLENGTH="6" onChange="eval('F.value = ' + this.form.F_expr2.value);eval('C.value = ' + this.form.C_expr2.value)">
+              <INPUT TYPE="hidden" NAME="K_expr" VALUE="(Math.round((100/(212-32) * (F.value - 32))*100))/100 + 273">&nbsp;<br><br><br><br>
+
+<INPUT class="button" TYPE="button" NAME="Reset" VALUE="Submit">
+<INPUT class="reset" TYPE="Reset" NAME="Reset" VALUE="Reset">
+
+</FORM>
+
+<div align="center">
+<br><br><br>
+  <a href="index.html">
+<img src="homeicon.ico" alt="HOME" style="width:120px;height:120px;">
+</a>
+</div>
+</center>
+</div>
+</body>
+</html>

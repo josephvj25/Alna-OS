@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Sticky Notes</title>
+<script type="text/javascript" >
+function selectElementContents(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+}
+
+var el = document.getElementById("foo");
+selectElementContents(el);
+</script>
+</head>
+<style>
+body
+{
+background-color:#aca845; 
+}
+.box
+{
+background-color:#f3eb9e;
+border-bottom:black 1px solid;
+border-top:black 1px solid;
+border-left:black 1px solid;
+border-right:black 1px solid;
+height: 660px;
+width:720px;
+border-radius:10px;
+}
+.bbox
+{
+height:535px;
+width:720px;
+margin-top:150px;
+}
+</style> <br><body onload="selectElementContents()"><center><div class="box" style="background-image:url(1424.png); background-repeat: no-repeat; font-family:chancery uralic; font-size:25px; margin:0 auto;padding:0rem;"><div class="bbox" contenteditable style="overflow:hidden;">
+<div id="foo">Your sticky notes here</div><br>  </div></div></center></body></html>
